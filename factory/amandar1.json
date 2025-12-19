@@ -1,0 +1,9 @@
+{
+	"name": "amandar1",
+	"location": "westus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8763a011-84e1-45d0-8893-914bd46b6845",
+		"tenantId": "b2976e21-2b5b-443f-bf2a-6a7ce41fe573"
+	}
+}
