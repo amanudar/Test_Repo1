@@ -1,0 +1,123 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CMPLNT_NUM",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CMPLNT_FR_DT",
+				"type": "date"
+			},
+			{
+				"name": "CMPLNT_FR_TM",
+				"type": "time",
+				"scale": 7
+			},
+			{
+				"name": "CMPLNT_TO_DT",
+				"type": "date"
+			},
+			{
+				"name": "CMPLNT_TO_TM",
+				"type": "time",
+				"scale": 7
+			},
+			{
+				"name": "RPT_DT",
+				"type": "date"
+			},
+			{
+				"name": "KY_CD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OFNS_DESC",
+				"type": "varchar"
+			},
+			{
+				"name": "PD_CD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PD_DESC",
+				"type": "varchar"
+			},
+			{
+				"name": "CRM_ATPT_CPTD_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "LAW_CAT_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "JURIS_DESC",
+				"type": "varchar"
+			},
+			{
+				"name": "BORO_NM",
+				"type": "varchar"
+			},
+			{
+				"name": "ADDR_PCT_CD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LOC_OF_OCCUR_DESC",
+				"type": "varchar"
+			},
+			{
+				"name": "PREM_TYP_DESC",
+				"type": "varchar"
+			},
+			{
+				"name": "PARKS_NM",
+				"type": "varchar"
+			},
+			{
+				"name": "HADEVELOPT",
+				"type": "varchar"
+			},
+			{
+				"name": "X_COORD_CD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Y_COORD_CD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Latitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Longitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Lat_Lon",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "NYPD_Data1"
+		}
+	}
+}

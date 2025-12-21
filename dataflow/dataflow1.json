@@ -1,0 +1,87 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          CMPLNT_NUM as integer,",
+				"          CMPLNT_FR_DT as date,",
+				"          CMPLNT_FR_TM as timestamp,",
+				"          CMPLNT_TO_DT as date,",
+				"          CMPLNT_TO_TM as timestamp,",
+				"          RPT_DT as date,",
+				"          KY_CD as string,",
+				"          OFNS_DESC as string,",
+				"          PD_CD as string,",
+				"          PD_DESC as string,",
+				"          CRM_ATPT_CPTD_CD as string,",
+				"          LAW_CAT_CD as string,",
+				"          JURIS_DESC as string,",
+				"          BORO_NM as string,",
+				"          ADDR_PCT_CD as string,",
+				"          LOC_OF_OCCUR_DESC as string,",
+				"          PREM_TYP_DESC as string,",
+				"          PARKS_NM as string,",
+				"          HADEVELOPT as string,",
+				"          X_COORD_CD as string,",
+				"          Y_COORD_CD as string,",
+				"          Latitude as string,",
+				"          Longitude as string,",
+				"          Lat_Lon as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          CMPLNT_NUM as long,",
+				"          CMPLNT_FR_DT as date,",
+				"          CMPLNT_FR_TM as timestamp,",
+				"          CMPLNT_TO_DT as date,",
+				"          CMPLNT_TO_TM as timestamp,",
+				"          RPT_DT as date,",
+				"          KY_CD as integer,",
+				"          OFNS_DESC as string,",
+				"          PD_CD as integer,",
+				"          PD_DESC as string,",
+				"          CRM_ATPT_CPTD_CD as string,",
+				"          LAW_CAT_CD as string,",
+				"          JURIS_DESC as string,",
+				"          BORO_NM as string,",
+				"          ADDR_PCT_CD as integer,",
+				"          LOC_OF_OCCUR_DESC as string,",
+				"          PREM_TYP_DESC as string,",
+				"          PARKS_NM as string,",
+				"          HADEVELOPT as string,",
+				"          X_COORD_CD as integer,",
+				"          Y_COORD_CD as integer,",
+				"          Latitude as double,",
+				"          Longitude as double,",
+				"          Lat_Lon as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2"
+			]
+		}
+	}
+}

@@ -1,0 +1,121 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "NYPD_Complaint_Data_Historic.csv",
+				"folderPath": "RawData",
+				"container": "amandar1"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "CMPLNT_NUM",
+				"type": "String"
+			},
+			{
+				"name": "CMPLNT_FR_DT",
+				"type": "String"
+			},
+			{
+				"name": "CMPLNT_FR_TM",
+				"type": "String"
+			},
+			{
+				"name": "CMPLNT_TO_DT",
+				"type": "String"
+			},
+			{
+				"name": "CMPLNT_TO_TM",
+				"type": "String"
+			},
+			{
+				"name": "RPT_DT",
+				"type": "String"
+			},
+			{
+				"name": "KY_CD",
+				"type": "String"
+			},
+			{
+				"name": "OFNS_DESC",
+				"type": "String"
+			},
+			{
+				"name": "PD_CD",
+				"type": "String"
+			},
+			{
+				"name": "PD_DESC",
+				"type": "String"
+			},
+			{
+				"name": "CRM_ATPT_CPTD_CD",
+				"type": "String"
+			},
+			{
+				"name": "LAW_CAT_CD",
+				"type": "String"
+			},
+			{
+				"name": "JURIS_DESC",
+				"type": "String"
+			},
+			{
+				"name": "BORO_NM",
+				"type": "String"
+			},
+			{
+				"name": "ADDR_PCT_CD",
+				"type": "String"
+			},
+			{
+				"name": "LOC_OF_OCCUR_DESC",
+				"type": "String"
+			},
+			{
+				"name": "PREM_TYP_DESC",
+				"type": "String"
+			},
+			{
+				"name": "PARKS_NM",
+				"type": "String"
+			},
+			{
+				"name": "HADEVELOPT",
+				"type": "String"
+			},
+			{
+				"name": "X_COORD_CD",
+				"type": "String"
+			},
+			{
+				"name": "Y_COORD_CD",
+				"type": "String"
+			},
+			{
+				"name": "Latitude",
+				"type": "String"
+			},
+			{
+				"name": "Longitude",
+				"type": "String"
+			},
+			{
+				"name": "Lat_Lon",
+				"type": "String"
+			}
+		]
+	}
+}

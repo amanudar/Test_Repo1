@@ -1,0 +1,338 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "CMPLNT_NUM",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CMPLNT_NUM",
+									"type": "Int64",
+									"physicalType": "bigint"
+								}
+							},
+							{
+								"source": {
+									"name": "CMPLNT_FR_DT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CMPLNT_FR_DT",
+									"type": "Date",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "CMPLNT_TO_DT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CMPLNT_TO_DT",
+									"type": "Date",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "CMPLNT_TO_TM",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CMPLNT_TO_TM",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "RPT_DT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RPT_DT",
+									"type": "Date",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "KY_CD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "KY_CD",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "OFNS_DESC",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "OFNS_DESC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PD_CD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PD_CD",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "PD_DESC",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PD_DESC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CRM_ATPT_CPTD_CD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CRM_ATPT_CPTD_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LAW_CAT_CD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LAW_CAT_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "JURIS_DESC",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "JURIS_DESC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BORO_NM",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BORO_NM",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDR_PCT_CD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ADDR_PCT_CD",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "LOC_OF_OCCUR_DESC",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LOC_OF_OCCUR_DESC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PREM_TYP_DESC",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PREM_TYP_DESC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PARKS_NM",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PARKS_NM",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "HADEVELOPT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "HADEVELOPT",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "X_COORD_CD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "X_COORD_CD",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Y_COORD_CD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Y_COORD_CD",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Latitude",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Latitude",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "Longitude",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Longitude",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "Lat_Lon",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Lat_Lon",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
