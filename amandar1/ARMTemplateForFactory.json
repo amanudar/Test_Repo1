@@ -11,9 +11,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
-		"AzureSqlDatabase1_password": {
+		"AzureSqlDatabase2_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase2'"
 		},
 		"AzureSqlDatabase1_properties_typeProperties_server": {
 			"type": "string",
@@ -23,7 +23,15 @@
 			"type": "string",
 			"defaultValue": "Capstone10-Crime-Database"
 		},
-		"AzureSqlDatabase1_properties_typeProperties_userName": {
+		"AzureSqlDatabase2_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "amanserver1.database.windows.net"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Capstone10-Crime-Database"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "amanadmin"
 		}
@@ -32,6 +40,609 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "CMPLNT_NUM",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CMPLNT_NUM",
+											"type": "Int64",
+											"physicalType": "bigint"
+										}
+									},
+									{
+										"source": {
+											"name": "CMPLNT_FR_DT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CMPLNT_FR_DT",
+											"type": "Date",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "CMPLNT_TO_DT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CMPLNT_TO_DT",
+											"type": "Date",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "CMPLNT_TO_TM",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CMPLNT_TO_TM",
+											"type": "TimeSpan",
+											"physicalType": "time"
+										}
+									},
+									{
+										"source": {
+											"name": "RPT_DT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "RPT_DT",
+											"type": "Date",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "KY_CD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "KY_CD",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "OFNS_DESC",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "OFNS_DESC",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PD_CD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PD_CD",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "PD_DESC",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PD_DESC",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CRM_ATPT_CPTD_CD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CRM_ATPT_CPTD_CD",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LAW_CAT_CD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LAW_CAT_CD",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "JURIS_DESC",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "JURIS_DESC",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BORO_NM",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "BORO_NM",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ADDR_PCT_CD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ADDR_PCT_CD",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "LOC_OF_OCCUR_DESC",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LOC_OF_OCCUR_DESC",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PREM_TYP_DESC",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PREM_TYP_DESC",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PARKS_NM",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PARKS_NM",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "HADEVELOPT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "HADEVELOPT",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "X_COORD_CD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "X_COORD_CD",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Y_COORD_CD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Y_COORD_CD",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Latitude",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Latitude",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Longitude",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Longitude",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Lat_Lon",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Lat_Lon",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DelimitedText1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqlTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "CMPLNT_NUM",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "CMPLNT_FR_DT",
+						"type": "date"
+					},
+					{
+						"name": "CMPLNT_FR_TM",
+						"type": "time",
+						"scale": 7
+					},
+					{
+						"name": "CMPLNT_TO_DT",
+						"type": "date"
+					},
+					{
+						"name": "CMPLNT_TO_TM",
+						"type": "time",
+						"scale": 7
+					},
+					{
+						"name": "RPT_DT",
+						"type": "date"
+					},
+					{
+						"name": "KY_CD",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OFNS_DESC",
+						"type": "varchar"
+					},
+					{
+						"name": "PD_CD",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PD_DESC",
+						"type": "varchar"
+					},
+					{
+						"name": "CRM_ATPT_CPTD_CD",
+						"type": "varchar"
+					},
+					{
+						"name": "LAW_CAT_CD",
+						"type": "varchar"
+					},
+					{
+						"name": "JURIS_DESC",
+						"type": "varchar"
+					},
+					{
+						"name": "BORO_NM",
+						"type": "varchar"
+					},
+					{
+						"name": "ADDR_PCT_CD",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LOC_OF_OCCUR_DESC",
+						"type": "varchar"
+					},
+					{
+						"name": "PREM_TYP_DESC",
+						"type": "varchar"
+					},
+					{
+						"name": "PARKS_NM",
+						"type": "varchar"
+					},
+					{
+						"name": "HADEVELOPT",
+						"type": "varchar"
+					},
+					{
+						"name": "X_COORD_CD",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Y_COORD_CD",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Latitude",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Longitude",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Lat_Lon",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "NYPD_Data1"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "NYPD_Complaint_Data_Historic.csv",
+						"folderPath": "RawData",
+						"container": "amandar1"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "CMPLNT_NUM",
+						"type": "String"
+					},
+					{
+						"name": "CMPLNT_FR_DT",
+						"type": "String"
+					},
+					{
+						"name": "CMPLNT_FR_TM",
+						"type": "String"
+					},
+					{
+						"name": "CMPLNT_TO_DT",
+						"type": "String"
+					},
+					{
+						"name": "CMPLNT_TO_TM",
+						"type": "String"
+					},
+					{
+						"name": "RPT_DT",
+						"type": "String"
+					},
+					{
+						"name": "KY_CD",
+						"type": "String"
+					},
+					{
+						"name": "OFNS_DESC",
+						"type": "String"
+					},
+					{
+						"name": "PD_CD",
+						"type": "String"
+					},
+					{
+						"name": "PD_DESC",
+						"type": "String"
+					},
+					{
+						"name": "CRM_ATPT_CPTD_CD",
+						"type": "String"
+					},
+					{
+						"name": "LAW_CAT_CD",
+						"type": "String"
+					},
+					{
+						"name": "JURIS_DESC",
+						"type": "String"
+					},
+					{
+						"name": "BORO_NM",
+						"type": "String"
+					},
+					{
+						"name": "ADDR_PCT_CD",
+						"type": "String"
+					},
+					{
+						"name": "LOC_OF_OCCUR_DESC",
+						"type": "String"
+					},
+					{
+						"name": "PREM_TYP_DESC",
+						"type": "String"
+					},
+					{
+						"name": "PARKS_NM",
+						"type": "String"
+					},
+					{
+						"name": "HADEVELOPT",
+						"type": "String"
+					},
+					{
+						"name": "X_COORD_CD",
+						"type": "String"
+					},
+					{
+						"name": "Y_COORD_CD",
+						"type": "String"
+					},
+					{
+						"name": "Latitude",
+						"type": "String"
+					},
+					{
+						"name": "Longitude",
+						"type": "String"
+					},
+					{
+						"name": "Lat_Lon",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -57,11 +668,28 @@
 					"database": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]",
 					"encrypt": "mandatory",
 					"trustServerCertificate": true,
+					"authenticationType": "SystemAssignedManagedIdentity"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('AzureSqlDatabase2_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSqlDatabase2_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": true,
 					"authenticationType": "SQL",
-					"userName": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]",
+					"userName": "[parameters('AzureSqlDatabase2_properties_typeProperties_userName')]",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('AzureSqlDatabase1_password')]"
+						"value": "[parameters('AzureSqlDatabase2_password')]"
 					}
 				}
 			},

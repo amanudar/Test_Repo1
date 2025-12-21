@@ -8,7 +8,7 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
-		"AzureSqlDatabase1_password": {
+		"AzureSqlDatabase2_password": {
 			"value": ""
 		},
 		"AzureSqlDatabase1_properties_typeProperties_server": {
@@ -17,7 +17,13 @@
 		"AzureSqlDatabase1_properties_typeProperties_database": {
 			"value": "Capstone10-Crime-Database"
 		},
-		"AzureSqlDatabase1_properties_typeProperties_userName": {
+		"AzureSqlDatabase2_properties_typeProperties_server": {
+			"value": "amanserver1.database.windows.net"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_database": {
+			"value": "Capstone10-Crime-Database"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_userName": {
 			"value": "amanadmin"
 		},
 		"containerUri": {
